@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'websocket',
+	'myapp',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'someproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+		'NAME': 'someproject',
+		'USER': 'root',
+		'PASSWORD': '123123',
     }
 }
 
@@ -101,7 +105,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/someproject/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/root/someproject/media/'
+
+# Mail settings for notify 
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_HOST_PASSWORD = '494895604zxc'
 EMAIL_HOST_USER = '12243211'
