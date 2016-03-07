@@ -28,8 +28,9 @@ urlpatterns = [
 	url(r'^publishers/$', PublisherList.as_view()),
 	url(r'^publishers/(?P<pk>[0-9]+)/$', PublisherDetail.as_view()),
 	url(r'^authors/$', AuthorList.as_view(),name='author-list'),
-	url(r'^author/(?P<pk>[0-9]+)/$', AuthorDetail.as_view(), name='author-detail'),
+	url(r'^author/(?P<pk>[0-9]+)/$', AuthorDetail.as_view(), name='author-form'),
 	url(r'^author/add/$', AuthorCreate.as_view()),
 	url(r'^author/(?P<pk>[0-9]+)/update/$', AuthorUpdate.as_view(),name='author-update'),
 	url(r'^author/(?P<pk>[0-9]+)/delete/$', AuthorDelete.as_view(),name='author-delete'),
+#	url(r'^api-auth/', include('rest_framwork.urls'), name='rest_framework'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

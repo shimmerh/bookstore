@@ -17,7 +17,7 @@ from django.views.generic.base import TemplateView
 from django.utils import timezone
 
 from models import *
-from myapp.forms import ContactForm
+from myapp.forms import AuthorForm
 
 
 class MyView(View):
@@ -57,15 +57,16 @@ class AuthorUpdate(UpdateView):
 	
 	model = Author
 	
-	fields = ['name']
+	fields = '__all__'
 	template_name_suffix='_update_form'
+	success_url = reverse_lazy('author-list')
 
 
 class AuthorDelete(DeleteView):
 
 	model = Author
 	
-	success_url = reverse_lazy('authors-list')
+	success_url = reverse_lazy('author-list')
 
 
 class AuthorDetail(DetailView):
@@ -75,7 +76,17 @@ class AuthorDetail(DetailView):
 	def get_context_data(self, **kwargs):
 		context = super(AuthorDetail, self).get_context_data(**kwargs)
 		return context
+
+
+class AuthorForm(FormView):
 	
+	template_name = 'myapp/author_form.html'
+	success_url = '/authors/'
+	form_class = AuthorForm
+
+	def form_vaild(self, form):
+		return super(AuthorForm, self).form_valid(form)
+
 
 class BookList(ListView):
 	queryset = Book.objects.order_by('-publication_date')
@@ -95,6 +106,7 @@ def output_csv(request):
 
 	return response
 
+
 def send_mail(request):
 	subject = request.GET.get('s')
 	message = request.GET.get('m')
@@ -104,8 +116,10 @@ def send_mail(request):
 
 	return Jsonresponse({'errcode':0}, safe=True)
 
+
 def mail_notify(subject, message, from_mail, to_mail):
 	send_mail(subject, message, from_mail, to_mail)
+
 
 def test(request):
 	return HttpResponse(reverse('authors-list'))
