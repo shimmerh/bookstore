@@ -114,8 +114,8 @@ MEDIA_ROOT = '/root/someproject/media/'
 
 # Mail settings for notify 
 EMAIL_HOST = 'smtp.qq.com'
-EMAIL_HOST_PASSWORD = '494895604zxc'
-EMAIL_HOST_USER = '12243211'
+EMAIL_HOST_PASSWORD = '******'
+EMAIL_HOST_USER = '123456'
 EMAIL_PORT = 25
 
 
