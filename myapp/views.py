@@ -23,14 +23,17 @@ class AuthorList(ListView):
 
 class AuthorCreate(CreateView):
 	model = Author
+	template_name = "myapp/author_add.html"
 	fields = '__all__'
-	success_url = reverse_lazy('author-list')
 
 
 class AuthorUpdate(UpdateView):
-	fields = '__all__'
-	model = Author
-	success_url = reverse_lazy('author-list')
+	queryset = Author.objects.all()
+	template_name = "myapp/author_update_form.html"
+	# for instance to add extra validation
+	# if you specify the form_class,you dont set fields
+	# in here, both the fields and form_class are same.
+	form_class = AuthorModelForm
 
 
 class AuthorDelete(DeleteView):
@@ -40,13 +43,11 @@ class AuthorDelete(DeleteView):
 
 class AuthorDetail(DetailView):
 	model = Author
-	def get_context_data(self, **kwargs):
-		context = super(AuthorDetail, self).get_context_data(**kwargs)
-		return context
 
 
 class AuthorForm(FormView):
 	template_name = 'myapp/author_form.html'
+	success_url = reverse_lazy('author-list')
 	form_class = AuthorModelForm
 
 
