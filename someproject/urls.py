@@ -23,11 +23,8 @@ from myapp.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', MyView.as_view()),
-	url(r'^test/$', test),
-	url(r'^publishers/$', PublisherList.as_view()),
-	url(r'^publishers/(?P<pk>[0-9]+)/$', PublisherDetail.as_view()),
-	url(r'^authors/$', AuthorList.as_view(),name='author-list'),
+#	url(r'^$', MyView.as_view()),
+	url(r'^$', AuthorList.as_view(),name='author-list'),
 	url(r'^author/(?P<pk>[0-9]+)/$', AuthorDetail.as_view(), name='author-form'),
 	url(r'^author/add/$', AuthorCreate.as_view()),
 	url(r'^author/(?P<pk>[0-9]+)/update/$', AuthorUpdate.as_view(),name='author-update'),
