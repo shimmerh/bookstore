@@ -29,7 +29,7 @@ class Author(models.Model):
 	title = models.CharField(max_length=3, choices=TITLE_CHOICES)
 	birth_date = models.DateField(blank=True, null=True)
 	email = models.EmailField()
-	headshot = models.ImageField(upload_to='author_headshot')
+	headshot = models.ImageField(blank=True, upload_to='author_headshot')
 
 
 	def __unicode__(self):
@@ -43,15 +43,5 @@ class Book(models.Model):
 	publication_date = models.DateField()
 
 
-class AuthorForm(ModelForm):
-	class Meta:
-		model = Author
-		fields = ['name', 'title', 'birth_date']
-
-
-class BookForm(ModelForm):
-	class Meta:
-		model = Book
-		fields = ['name','authors']
 
 

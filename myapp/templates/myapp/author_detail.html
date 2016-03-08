@@ -3,7 +3,8 @@
 <h1>{{ object.name }}</h1>
 <p>{{ object.birth_date }}</p>
 <p>{{ object.email }}</p>
-<p>{{ object.headshot }}</p>
+<p><img href="{{ object.headshot }}"><img></p>
+<input type='button' value="修改" onclick="window.location.href='{%url 'author-update' object.id%}'">
 <input type='button' value="删除" onclick="window.location.href='{%url 'author-delete' object.id%}'">
 {% endblock %}
 

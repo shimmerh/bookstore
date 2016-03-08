@@ -6,13 +6,11 @@ import csv
 
 from django.http import *
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.views.generic import View, ListView 
-from django.views.generic.detail import DetailView
+from django.views.generic import View, CreateView, UpdateView, DeleteView, FormView, ListView, DetailView
 from django.utils import timezone
 
 from models import *
-from myapp.forms import AuthorForm
+from myapp.forms import AuthorModelForm
 
 class MyView(View):
 	def get(self, request , *args, **kwargs):
@@ -25,14 +23,13 @@ class AuthorList(ListView):
 
 class AuthorCreate(CreateView):
 	model = Author
-	fields = ['name']
+	fields = '__all__'
+	success_url = reverse_lazy('author-list')
 
 
 class AuthorUpdate(UpdateView):
-	model = Author
-	
 	fields = '__all__'
-	template_name_suffix='_update_form'
+	model = Author
 	success_url = reverse_lazy('author-list')
 
 
@@ -50,20 +47,7 @@ class AuthorDetail(DetailView):
 
 class AuthorForm(FormView):
 	template_name = 'myapp/author_form.html'
-	success_url = '/authors/'
-	form_class = AuthorForm
-
-	def form_vaild(self, form):
-		return super(AuthorForm, self).form_valid(form)
-
-
-class BookList(ListView):
-	queryset = Book.objects.order_by('-publication_date')
-	context_object_name = 'book_list'
-
-
-
-
+	form_class = AuthorModelForm
 
 
 def test(request):

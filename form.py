@@ -1,6 +1,6 @@
 from django import forms
 
-class ContactForm(form.Form):
+class AuthorForm(form.Form):
 	name = forms.CharField()
 	message = forms.CharField(widget=forms.Textarea)
 
