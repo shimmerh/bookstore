@@ -6,7 +6,10 @@ import csv
 
 from django.http import *
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.views.generic import View, CreateView, UpdateView, DeleteView, FormView, ListView, DetailView
+from django.views.generic import (
+	View, CreateView, UpdateView, DeleteView, 
+	FormView, ListView, DetailView
+	)
 from django.utils import timezone
 
 from models import *

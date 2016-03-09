@@ -19,11 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from myapp.views import *
+from myapp.myadmin import admin_site
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-#	url(r'^$', MyView.as_view()),
+    url(r'^myadmin/', include(admin_site.urls)),
 	url(r'^$', AuthorList.as_view(),name='author-list'),
 	url(r'^author/add/$', AuthorCreate.as_view(), name='author-add'),
 	url(r'^author/(?P<pk>[0-9]+)/$', AuthorDetail.as_view(), name='author-detail'),

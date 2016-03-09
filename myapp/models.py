@@ -14,12 +14,12 @@ TITLE_CHOICES = (
 )
 
 class Publisher(models.Model):
-	name = models.CharField(max_length=30)
-	address = models.CharField(max_length=50)
-	city = models.CharField(max_length=60)
-	state_province = models.CharField(max_length=30)
-	country = models.CharField(max_length=50)
-	website = models.URLField()
+	name = models.CharField(max_length=30, verbose_name='姓名')
+	address = models.CharField(max_length=50, verbose_name="地址")
+	city = models.CharField(max_length=60, verbose_name='市')
+	state_province = models.CharField(max_length=30, verbose_name='邮政编码')
+	country = models.CharField(max_length=50, verbose_name='国家')
+	website = models.URLField(verbose_name='主页')
 
 	class Meta:
 		ordering = ["-name"]
@@ -37,6 +37,9 @@ class Author(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('author-detail', kwargs={'pk': self.pk})	
+	
+	def get_image_url(self):
+		return "/media/%s" % self.headshot
 
 	def __unicode__(self):
 		return self.name

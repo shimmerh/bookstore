@@ -1,9 +1,9 @@
 {% extends "myapp/base.html" %}
 {% block content %}
-<h1>{{ object.name }}</h1>
-<p>{{ object.birth_date }}</p>
-<p>{{ object.email }}</p>
-<p>{{ object.headshot }}</p>
+<p>{{ object.title }}.{{ object.name }}</p>
+<p>生日：{{ object.birth_date }}</p>
+<p>电子邮件：{{ object.email }}</p>
+<p><img src="{{ object.get_image_url }}"/></p>
 <input type='button' value="修改" onclick="window.location.href='{%url 'author-update' object.id%}'">
 <input type='button' value="删除" onclick="window.location.href='{%url 'author-delete' object.id%}'">
 {% endblock %}
